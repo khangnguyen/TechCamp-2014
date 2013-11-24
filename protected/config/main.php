@@ -9,7 +9,7 @@ $pre_config = require(dirname(__FILE__).'/local.php');
 
 return CMap::mergeArray(array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name'=>'TBBC',
+    'name'=>'TechCamp',
 
     'preload'=>array('log'),
 
@@ -19,6 +19,14 @@ return CMap::mergeArray(array(
         'application.behaviors.*',
         'application.vendors.*',
         'application.helpers.*',
+    ),
+
+    'modules'=>array(
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'fuckthispassword',
+            'ipFilters'=>array($_SERVER['REMOTE_ADDR']),
+        ),
     ),
 
     'components'=>array(
@@ -51,7 +59,7 @@ return CMap::mergeArray(array(
                 //'search'=>'site/index',
                 //'download/<search:.+>'=>'site/index',
                 //'download'=>'site/index',
-                //'.*'=>'site/index',
+                '.*'=>'site/index',
             ),
         ),
         'log'=>array(
