@@ -1,4 +1,4 @@
-#
+j#
 # Cookbook Name:: main
 # Recipe:: default
 #
@@ -12,16 +12,15 @@ include_recipe 'htpasswd'
 include_recipe 'php::module_pgsql'
 include_recipe 'php::module_apc'
 include_recipe 'php::fpm'
-include_recipe 'nginx'
 include_recipe 'postgresql::client'
 include_recipe 'git'
 include_recipe 'python'
 
 
-yii_version = node[:skeleton][:yii_version]
-app_user = node[:skeleton][:app_user]
-db = node[:skeleton][:db]
-site_dir = node[:skeleton][:site_dir]
+yii_version = node[:techcamp][:yii_version]
+app_user = node[:techcamp][:app_user]
+db = node[:techcamp][:db]
+site_dir = node[:techcamp][:site_dir]
 
 
 yii_framework yii_version do
@@ -34,11 +33,11 @@ if db[:host] == 'localhost'
     include_recipe 'postgresql::server'
     db_user = db[:user]
 
-    pgsql_user db_user do
+    postgresql_user db_user do
         password db[:password]
     end
 
-    pgsql_db db[:database] do
+    postgresql_database db[:database] do
         owner db_user
     end
 end
@@ -49,12 +48,6 @@ user app_user do
     shell '/bin/bash'
     supports :manage_home => true
     action :create
-end
-
-
-directory node[:skeleton][:log_dir] do
-    action :create
-    recursive true
 end
 
 
@@ -89,23 +82,6 @@ end
 end
 
 
-site_name = 'skeleton'
-
-template "/etc/nginx/sites-available/#{site_name}" do
-    source 'nginx-site.erb'
-    mode '644'
-    notifies :reload, 'service[nginx]'
-end
-
-nginx_site 'default' do
-    action :disable
-end
-
-nginx_site site_name do
-    action :enable
-end
-
-
 # Schemup
 %w{libpq-dev}.each do |pkg|
     package pkg do
@@ -113,8 +89,8 @@ end
     end
 end
 
-python_env = node[:skeleton][:python][:virtualenv]
-build_dir = node[:skeleton][:python][:build_dir]
+python_env = node[:techcamp][:python][:virtualenv]
+build_dir = node[:techcamp][:python][:build_dir]
 
 
 [build_dir, python_env].each do |dir|
@@ -146,14 +122,14 @@ bash 'run schemup' do
 end
 
 
-template '/etc/logrotate.d/skeleton.cogini.com' do
+template '/etc/logrotate.d/khangnguyen.me' do
     mode '644'
     source 'logrotate.erb'
 end
 
 
-if node[:skeleton][:htpasswd]
-    node[:skeleton][:htpasswd].each do |username, passwd|
+if node[:techcamp][:htpasswd]
+    node[:techcamp][:htpasswd].each do |username, passwd|
         htpasswd "#{site_dir}/../.htpasswd" do
             user username
             password passwd
