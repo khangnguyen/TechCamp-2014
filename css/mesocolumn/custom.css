@@ -1,0 +1,63 @@
+@font-face {
+font-family: 'FontAwesome';
+src: url('http://techcamp.vn/techcamp_blog/wp-content/themes/mesocolumn/lib/scripts/fontawesome/font/fontawesome-webfont.eot');
+src: url('http://techcamp.vn/techcamp_blog/wp-content/themes/mesocolumn/lib/scripts/fontawesome/font/fontawesome-webfont.eot?#iefix') format('eot'), url('http://techcamp.vn/techcamp_blog/wp-content/themes/mesocolumn/lib/scripts/fontawesome/font/fontawesome-webfont.woff') format('woff'), url('http://techcamp.vn/techcamp_blog/wp-content/themes/mesocolumn/lib/scripts/fontawesome/font/fontawesome-webfont.ttf') format('truetype'), url('http://techcamp.vn/techcamp_blog/wp-content/themes/mesocolumn/lib/scripts/fontawesome/font/FontAwesome.otf') format('opentype'), url('http://techcamp.vn/techcamp_blog/wp-content/themes/mesocolumn/lib/scripts/fontawesome/font/fontawesome-webfont.svg#FontAwesome') format('svg');
+font-weight: normal;
+font-style: normal;
+}
+body {font-family: 'Open Sans', sans-serif;font-weight: 400;}
+#siteinfo div,h1,h2,h3,h4,h5,h6,.header-title,#main-navigation, #featured #featured-title, #cf .tinput, #wp-calendar caption,.flex-caption h1,#portfolio-filter li,.nivo-caption a.read-more,.form-submit #submit,.fbottom,ol.commentlist li div.comment-post-meta, .home-post span.post-category a,ul.tabbernav li a {font-family: 'Open Sans', sans-serif;font-weight: 600;}
+#main-navigation, .sf-menu li a {font-family: 'Open Sans', sans-serif;font-weight: 600;}
+
+#top-navigation {background-color: #bd0a0a;}
+#top-navigation .sf-menu li a:hover,#top-navigation .sf-menu li:hover,#top-navigation .sf-menu ul {background-color: #a30000;}
+#top-navigation .sf-menu ul li a:hover {background-color: #8a0000;background-image: none;}
+
+#custom #right-sidebar ul.tabbernav { background: #bd0a0a !important; }
+h2.header-title { background: #bd0a0a; }
+#right-sidebar ul.tabbernav li.tabberactive a,#right-sidebar ul.tabbernav li.tabberactive a:hover { color:#fff !important; background-color: #8a0000; }
+#right-sidebar ul.tabbernav li a:hover, #custom h2.inblog {color: #FFF !important;background-color: #a30000;}
+#content .item-title a,h2.post-title a, h1.post-title a, article.post .post-meta a:hover, #custom .product-with-desc ul.products li h1.post-title a:hover, #custom .twitterbox span a, #custom h3.widget-title a, #custom .ftop div.textwidget a, #custom .ftop a:hover, #custom .ftop .widget_my_theme_twitter_widget a, #content .activity-header a, #content .activity-inner a, #content .item-list-tabs a {
+color: #bd0a0a !important;}
+#custom #post-entry h1.post-title a:hover,#custom #post-entry h2.post-title a:hover {color: #222;}
+#woo-container p.price,.wp-pagenavi a, #woo-container span.price, #custom ul.product_list_widget li span.amount,span.pricebox, #custom .product-with-desc ul.products li .post-product-right span.price, .js_widget_product_price,#jigo-single-product p.price   {background: none repeat scroll 0 0 #ea3737;}
+.wp-pagenavi .current, .wp-pagenavi a:hover{background: none repeat scroll 0 0 #a30000;}
+#post-navigator .wp-pagenavi a,#post-navigator .wp-pagenavi a:hover {background: none repeat scroll 0 0 #700000;}
+#post-navigator .wp-pagenavi .current {background: none repeat scroll 0 0 #3d0000;}
+#content a.activity-time-since {color: #888 !important;}
+#content .item-list-tabs span  {background-color: #d62323 !important;}
+#custom .widget a:hover, #custom h3.widget-title a:hover, #custom .ftop div.textwidget a:hover, #custom .ftop a:hover, #custom .ftop .widget_my_theme_twitter_widget a:hover {color: #8a0000 !important;}
+#custom h3.widget-title {border-bottom: 5px solid #bd0a0a;}
+#searchform input[type="submit"], #searchform input[type="button"],#custom .bp-searchform #search-submit {background-color: #bd0a0a !important;}
+#post-entry .post-content a, #author-bio a, #post-related a, #commentpost .fn a, ol.pinglist a, #post-navigator-single a,#commentpost #rssfeed a, #commentpost .comment_text a, #commentpost p a, .product_meta a, a.show_review_form, #custom .twitterbox li a  {color: #bd0a0a;}
+.pagination-links a.page-numbers, #custom #woo-container nav.woocommerce-pagination a.page-numbers {background-color: #bd0a0a;color:#fff !important;}
+.pagination-links .page-numbers, #custom #woo-container nav.woocommerce-pagination span.page-numbers.current {background-color: #8a0000;color:#fff !important;}
+#custom footer.footer-bottom, #custom footer.footer-bottom .fbottom {background-color: #bd0a0a;color:#fff !important;}
+
+#custom #header-overlay a {color: #blank !important;text-decoration: none;}
+#custom #siteinfo p#site-description {color: #blank !important;text-decoration: none;}
+#header-overlay { float:left;width:100%;padding:0%;background: transparent url('http://techcamp.vn/techcamp_blog/wp-content/uploads/2013/12/cropped-Techcamp-transparent-background-1.png') no-repeat left center; background-size: 70% auto; height: 170px; }
+@media only screen and (min-width:300px) and (max-width:770px){
+#header-overlay { background-size: 100% auto; height:auto; }
+}
+#right-sidebar { padding-top: 3em !important; }
+.header-overlay-on hgroup {
+  text-indent: -99999px;
+}
+
+.gravatar_recent_comment li, .twitterbox li { padding:0px; font-size: 1.025em; line-height:1.5em;  }
+.gravatar_recent_comment span.author { font-weight:bold; }
+.gravatar_recent_comment img { width:32px; height:32px; float:left; margin: 0 10px 0 0; }
+ul.recent-postcat li {position:relative;border-bottom: 1px solid #EAEAEA;padding: 0 0 0.5em !important;margin: 0 0 1em !important;}
+ul.recent-postcat li:last-child,ul.item-list li:last-child,.avatar-block li:last-child  { border-bottom: none;  }
+ul.recent-postcat li .feat-post-meta { margin: 0px 0 0 75px; }
+ul.recent-postcat li.has_no_thumb .feat-post-meta { margin: 0px; }
+ul.recent-postcat img {background: white;padding: 5px;margin:0px;border: 1px solid #DDD;}
+#custom #right-sidebar ul.recent-postcat li .feat-post-meta .feat-title {margin: 0;}
+#custom #right-sidebar ul.recent-postcat li .feat-post-meta .feat-title {width: 100%;font-size: 1.05em; line-height:1.35em !important;font-weight: bold;}
+ul.recent-postcat li .feat-post-meta small { font-size: 0.85em; padding:0; }
+.bp-searchform {margin: 0px;padding: 5%;float: left;width: 90%;background: white;border: 1px solid #DDD;}
+.bp-searchform label {display:none;}
+
+
+#wpadminbar { display:none; }

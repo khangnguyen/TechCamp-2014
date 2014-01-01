@@ -1,12 +1,12 @@
 <?php
 
-class PostController extends Controller
+class TopicController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+        public $layout='//layouts/main';
 
 	/**
 	 * @return array action filters
@@ -15,7 +15,7 @@ class PostController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			'topicOnly + delete', // we only allow deletion via TOPIC request
 		);
 	}
 
@@ -67,7 +67,7 @@ class PostController extends Controller
 
 
         public function actionAPI() {
-          $model=new Post();
+          $model=new Topic();
           $model->unsetAttributes();
           $deviceId = $_REQUEST['device_id'];
           $updatedAt = $_REQUEST['updated_at'];
@@ -80,6 +80,7 @@ class PostController extends Controller
               'title'=>$data->title,
               'description'=>$data->description,
               'slide_url'=>$data->slide_url,
+	      'duration'=>$data->duration,
               'speaker_name'=>$data->speaker_name,
               'speaker_description'=>$data->speaker_description,
               'speaker_url'=>$data->speaker_url,
@@ -99,14 +100,14 @@ class PostController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Post;
-
+                $this->layout = '//layouts/minimal';
+		$model=new Topic;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Post']))
+		if(isset($_POST['Topic']))
 		{
-			$model->attributes=$_POST['Post'];
+			$model->attributes=$_POST['Topic'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -128,9 +129,9 @@ class PostController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Post']))
+		if(isset($_POST['Topic']))
 		{
-			$model->attributes=$_POST['Post'];
+			$model->attributes=$_POST['Topic'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -159,11 +160,11 @@ class PostController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$model=new Post('search');
-		$model->unsetAttributes();  // clear any default values
-
-                if(isset($_GET['Post'])) {
-                    $model->attributes=$_GET['Post'];
+                $this->layout = '//layouts/minimal';
+                $model=new Topic('search');
+                $model->unsetAttributes();  // clear any default values
+                if(isset($_GET['Topic'])) {
+                    $model->attributes=$_GET['Topic'];
                 }
 		$this->render('index',array(
                         'model'=>$model
@@ -175,10 +176,10 @@ class PostController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Post('search');
+		$model=new Topic('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Post']))
-			$model->attributes=$_GET['Post'];
+		if(isset($_GET['Topic']))
+			$model->attributes=$_GET['Topic'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -186,18 +187,16 @@ class PostController extends Controller
 	}
 
         public function actionVote() {
-            Yii::log(print_r($_POST, true), 'debug');
-            if (isset($_POST['id']) && isset($_POST['post_id'])) {
+            if (isset($_POST['topic_id'])) {
               $vote = new Vote;
               $vote->id = $_POST['id'];
-              $vote->post_id = $_POST['post_id'];
+              $vote->topic_id = $_POST['topic_id'];
 
               $result = array('status'=>'Success');
               if (!$vote->save()) {
                 $result['status'] = 'Failure';
                 $result['errors'] = $vote->getErrors();
               }
-
               print json_encode($result);
             }
         }
@@ -206,12 +205,12 @@ class PostController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Post the loaded model
+	 * @return Topic the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Post::model()->findByPk($id);
+		$model=Topic::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -219,11 +218,11 @@ class PostController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Post $model the model to be validated
+	 * @param Topic $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='post-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='topic-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

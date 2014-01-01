@@ -3,7 +3,7 @@ body
 	margin: 0;
 	padding: 0;
 	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
+	font: normal 12pt Arial,Helvetica,sans-serif;
 	background: #EFEFEF;
 }
 
@@ -19,7 +19,7 @@ body
 {
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
+/*	border-top: 3px solid #C9E0ED; */
 }
 
 #content

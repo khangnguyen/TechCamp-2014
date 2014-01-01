@@ -1,14 +1,14 @@
 <?php
-/* @var $this PostController */
-/* @var $model Post */
+/* @var $this TopicController */
+/* @var $model Topic */
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<div class="form" style="margin: 20px">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'post-form',
-	'enableAjaxValidation'=>false,
+	'id'=>'topic-form',
+	'enableClientValidation'=>true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -23,7 +23,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>60)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
@@ -34,6 +34,28 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'duration'); ?>
+		<?php echo $form->dropDownList($model, 'duration', array(
+                    '5' => '5 minutes',
+                    '15' => '15 minutes',
+                    '30' => '30 minutes',
+                    '45' => '45 minutes',
+                    '60' => '60 minutes')); 
+                ?>
+		<?php echo $form->error($model,'duration'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'desired_time'); ?>
+		<?php echo $form->dropDownList($model, 'desired_time', array(
+                    'Morning' => 'Morning',
+                    'Early Afternoon' => 'Early Afternoon',
+                    'Late Afternoon' => 'Late Afternoon'));
+                ?>
+		<?php echo $form->error($model,'desired_time'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'speaker_name'); ?>
 		<?php echo $form->textField($model,'speaker_name',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'speaker_name'); ?>
@@ -41,7 +63,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'speaker_description'); ?>
-		<?php echo $form->textArea($model,'speaker_description',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->textArea($model,'speaker_description',array('rows'=>6, 'cols'=>60)); ?>
 		<?php echo $form->error($model,'speaker_description'); ?>
 	</div>
 

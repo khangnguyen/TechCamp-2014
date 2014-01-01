@@ -1,3 +1,7 @@
+<script>
+  if ( window.self === window.top ) { window.location = '/'; }
+</script>
+
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="container">
 	<div class="span-19">

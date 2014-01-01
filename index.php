@@ -1,6 +1,6 @@
 <?php
 
-$yii = __DIR__ . '/../yii/framework/yii.php';
+$yii = __DIR__ . '/../../yii/framework/yii.php';
 $config = __DIR__ . '/protected/config/main.php';
 
 // Remove the following lines when in production mode

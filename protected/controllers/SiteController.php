@@ -33,7 +33,9 @@ class SiteController extends Controller {
         #        $this->redirect(array('user/accountBalance', 'id'=>Yii::app()->user->_id));
         #    }
 	    #}
-        $this->render('index');
+	#$this->render('index');
+	$this->redirect('/');
+
 	}
     public function actionChangeLanguage() {
         /* Change the session's language if the requested language is

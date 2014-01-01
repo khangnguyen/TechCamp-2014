@@ -17,14 +17,14 @@ include_recipe 'git'
 include_recipe 'python'
 
 
-yii_version = node[:techcamp][:yii_version]
-app_user = node[:techcamp][:app_user]
-db = node[:techcamp][:db]
-site_dir = node[:techcamp][:site_dir]
+yii_version = node[:voting][:yii_version]
+app_user = node[:voting][:app_user]
+db = node[:voting][:db]
+site_dir = node[:voting][:site_dir]
 
 
 yii_framework yii_version do
-    symlink "#{site_dir}/../yii"
+    symlink "#{site_dir}/../../yii"
 end
 
 
@@ -89,8 +89,8 @@ end
     end
 end
 
-python_env = node[:techcamp][:python][:virtualenv]
-build_dir = node[:techcamp][:python][:build_dir]
+python_env = node[:voting][:python][:virtualenv]
+build_dir = node[:voting][:python][:build_dir]
 
 
 [build_dir, python_env].each do |dir|
@@ -128,8 +128,8 @@ template '/etc/logrotate.d/khangnguyen.me' do
 end
 
 
-if node[:techcamp][:htpasswd]
-    node[:techcamp][:htpasswd].each do |username, passwd|
+if node[:voting][:htpasswd]
+    node[:voting][:htpasswd].each do |username, passwd|
         htpasswd "#{site_dir}/../.htpasswd" do
             user username
             password passwd

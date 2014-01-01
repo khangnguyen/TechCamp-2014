@@ -1,0 +1,17 @@
+#page > .grid-view table.items input[type="text"] {
+  padding: 0;
+}
+#page > .grid-view table.items th {
+  background: #bd0a0a; /* Old browsers */
+  background: -moz-linear-gradient(top, #bd0a0a 0%, #8a0000 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#bd0a0a), color-stop(100%,#8a0000)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #bd0a0a 0%,#8a0000 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #bd0a0a 0%,#8a0000 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #bd0a0a 0%,#8a0000 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #bd0a0a 0%,#8a0000 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bd0a0a', endColorstr='#8a0000',GradientType=0 ); /* IE6-9 */
+}
+
+#disqus_thread {
+  margin-top: 60px;
+}

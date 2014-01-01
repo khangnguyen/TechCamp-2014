@@ -5,11 +5,11 @@
  *
  * The followings are the available columns in table 'votes':
  * @property string $id
- * @property integer $post_id
+ * @property integer $topic_id
  * @property string $created_at
  *
  * The followings are the available model relations:
- * @property Posts $post
+ * @property Topics $topic
  */
 class Vote extends CActiveRecord
 {
@@ -39,14 +39,14 @@ class Vote extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, post_id', 'required'),
-			array('post_id', 'numerical', 'integerOnly'=>true),
-                        array('post_id','CompositeUniqueKeyValidator', 'keyColumns' => 'id, post_id'), 
+			array('id, topic_id', 'required'),
+			array('topic_id', 'numerical', 'integerOnly'=>true),
+                        array('topic_id','CompositeUniqueKeyValidator', 'keyColumns' => 'id, topic_id'), 
 			array('id', 'length', 'max'=>64),
 			array('created_at', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, post_id, created_at', 'safe', 'on'=>'search'),
+			array('id, topic_id, created_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +58,7 @@ class Vote extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'post' => array(self::BELONGS_TO, 'Posts', 'post_id'),
+			'topic' => array(self::BELONGS_TO, 'Topic', 'topic_id'),
 		);
 	}
 
@@ -69,7 +69,7 @@ class Vote extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'post_id' => 'Post',
+			'topic_id' => 'Topic',
 			'created_at' => 'Created At',
 		);
 	}
@@ -86,7 +86,7 @@ class Vote extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('post_id',$this->post_id);
+		$criteria->compare('topic_id',$this->topic_id);
 		$criteria->compare('created_at',$this->created_at,true);
 
 		return new CActiveDataProvider($this, array(

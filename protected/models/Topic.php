@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "posts".
+ * This is the model class for table "topics".
  *
- * The followings are the available columns in table 'posts':
+ * The followings are the available columns in table 'topics':
  * @property integer $id
  * @property string $title
  * @property string $description
@@ -14,13 +14,13 @@
  * @property string $created_at
  * @property string $updated_at
  */
-class Post extends CActiveRecord
+class Topic extends CActiveRecord
 {
     public $vote_id;
     public $vote_count;
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Post the static model class
+	 * @return Topic the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -32,7 +32,7 @@ class Post extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'posts';
+		return 'topics';
 	}
 
 	/**
@@ -45,7 +45,8 @@ class Post extends CActiveRecord
 		return array(
 			array('title, description, speaker_name', 'required'),
 			array('title, speaker_name', 'length', 'max'=>128),
-			array('slide_url, speaker_description, speaker_url, created_at, updated_at', 'safe'),
+			array('duration', 'numerical', 'integerOnly'=>true),
+			array('desired_time, slide_url, speaker_description, speaker_url, created_at, updated_at', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, title, description, slide_url, speaker_name, speaker_description, speaker_url, created_at, updated_at', 'safe', 'on'=>'search'),
@@ -65,7 +66,8 @@ class Post extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'votes' => array(self::HAS_MANY, 'Vote', 'post_id'),
+			'votes' => array(self::HAS_MANY, 'Vote', 'topic_id'),
+			'voteCount' => array(self::STAT, 'Vote', 'topic_id')
 		);
 	}
 
@@ -84,6 +86,7 @@ class Post extends CActiveRecord
 			'speaker_url' => 'Speaker Url',
 			'created_at' => 'Created At',
 			'updated_at' => 'Updated At',
+			'desired_time' => 'Desired time for presentation'
 		);
 	}
 
@@ -99,6 +102,7 @@ class Post extends CActiveRecord
 		$criteria=new CDbCriteria;
 
                 $sort = new CSort();
+		$sort->defaultOrder = 'created_at DESC';
                 $sort->attributes = array(
                     'id'=>array(
                         'asc'=>'vote_count ASC',
@@ -114,7 +118,7 @@ class Post extends CActiveRecord
                     ),
                 );
 
-                $criteria->join = "LEFT JOIN votes v1 ON v1.post_id=t.id LEFT JOIN votes v2 ON v2.post_id = t.id AND v2.id = '" . $userId . "'";
+                $criteria->join = "LEFT JOIN votes v1 ON v1.topic_id=t.id LEFT JOIN votes v2 ON v2.topic_id = t.id AND v2.id = '" . $userId . "'";
                 $criteria->select = 't.*, COUNT(v1.id) vote_count, v2.id vote_id';
                 $criteria->group = 't.id, v2.id';
 
@@ -123,7 +127,7 @@ class Post extends CActiveRecord
 
                 $criteria->compare('updated_at', " > " . $updated_at, true);
 
-		return new CActiveDataProvider('Post', array(
+		return new CActiveDataProvider('Topic', array(
 			'criteria'=>$criteria,
                         'sort'=>$sort,
 		));

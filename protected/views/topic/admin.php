@@ -1,15 +1,15 @@
 <?php
-/* @var $this PostController */
-/* @var $model Post */
+/* @var $this TopicController */
+/* @var $model Topic */
 
 $this->breadcrumbs=array(
-	'Posts'=>array('index'),
+	'Topics'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Post', 'url'=>array('index')),
-	array('label'=>'Create Post', 'url'=>array('create')),
+	array('label'=>'List Topic', 'url'=>array('index')),
+	array('label'=>'Create Topic', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#post-grid').yiiGridView('update', {
+	$('#topic-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Posts</h1>
+<h1>Manage Topics</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,7 +41,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'post-grid',
+	'id'=>'topic-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
