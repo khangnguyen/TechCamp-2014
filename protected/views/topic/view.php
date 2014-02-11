@@ -26,14 +26,18 @@ Votes: <span class="js-vote-count"><?= $model->voteCount ?></span>
 <p>
   <p><?= $model->description ?></p>
   <? if ($model->duration) { ?>
-    <p><?= $model->duration ?> minutes</p>
+    <p>Duration: <?= $model->duration ?> minutes</p>
+  <? } ?>
+  <? if ($model->language) { ?>
+    <p>Langauge: <?= $model->language ?></p>
   <? } ?>
   <? if ($model->slide_url) { ?>
     <p>
-      <a href="<?= $model->slide_url ?>" target="_blank">Link</a>
+      <a href="<?= $model->slide_url ?>" target="_blank">Slide Link</a>
     </p>
   <? } ?>
 </p>
+
 
 <p style="margin-top: 30px">
   <h5>By <?= $model->speaker_name ?></h5>
@@ -44,7 +48,7 @@ Votes: <span class="js-vote-count"><?= $model->voteCount ?></span>
 
   <? if ($model->speaker_url) { ?>
     <p>
-      <a href="<?= $model->speaker_url ?>" target="_blank">Link</a>
+      <a href="<?= $model->speaker_url ?>" target="_blank">Speaker Link</a>
     </p>
   <? } ?>  
 </p>

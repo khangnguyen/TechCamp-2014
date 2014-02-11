@@ -1,5 +1,5 @@
   $(function() {
-    $(".js-vote-btn").click(function(e) {
+    $(".js-vote-btn").live('click', function(e) {
       var $this = $(this);
       $.ajax({
         type: "POST",

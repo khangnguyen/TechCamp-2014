@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/mesocolumn/tabber.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/mesocolumn/custom.css" />
 
+        <link rel="shortcut icon" href="/voting/favicon.ico" type="image/png">
+
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.8.3.min.js"></script>
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
@@ -43,6 +45,7 @@
                         <ul class="sf-menu sf-js-enabled sf-shadow">
                             <li><a href="http://techcamp.vn">Home</a></li>
                             <li class="page_item page-item-16 current_page_item"><a href="http://techcamp.vn/submit-a-topic/">Submit a topic</a></li>
+                            <li class="page_item page-item-16 current_page_item"><a href="http://techcamp.vn/contact-us/">Contact Us</a></li>
                         </ul>
                         <div id="mobile-nav">
                         </div>

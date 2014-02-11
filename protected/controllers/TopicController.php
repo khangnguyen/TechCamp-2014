@@ -7,6 +7,11 @@ class TopicController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
         public $layout='//layouts/main';
+	public $og_title = 'Techcamp Saigon 2014';
+	public $og_description = "TechcampSaigon is a new evolution in the BarcampSaigon family. It's an event that focuses solely on technology and bringing in high quality in-depth speakers that can talk about topics that are relevant to computer scientists, engineers, outsourcing companies, tech companies, startups, and more. Topics will revolve around key themes like: mobile, web development, programming languages, servers, hardware, new frontiers of technology, and more.";
+	public $og_type = 'article';
+	public $og_image = 'http://techcamp.vn/techcamp_blog/wp-content/themes/mesocolumn/images/facebook-default.jpg';
+
 
 	/**
 	 * @return array action filters

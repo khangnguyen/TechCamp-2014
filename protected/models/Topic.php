@@ -46,7 +46,7 @@ class Topic extends CActiveRecord
 			array('title, description, speaker_name', 'required'),
 			array('title, speaker_name', 'length', 'max'=>128),
 			array('duration', 'numerical', 'integerOnly'=>true),
-			array('desired_time, slide_url, speaker_description, speaker_url, created_at, updated_at', 'safe'),
+			array('language, desired_time, slide_url, speaker_description, speaker_url, created_at, updated_at', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, title, description, slide_url, speaker_name, speaker_description, speaker_url, created_at, updated_at', 'safe', 'on'=>'search'),
@@ -55,7 +55,16 @@ class Topic extends CActiveRecord
 
         protected function beforeValidate() {
             $this->updated_at = date('Y-m-d H:i:s');
+	    $this->slide_url = $this->addhttp($this->slide_url);
+	    $this->speaker_url = $this->addhttp($this->speaker_url);
             return True;
+        }
+
+	private function addhttp($url) {
+	    if ($url != '' && !preg_match("~^(?:f|ht)tps?://~i", $url)) {
+                $url = "http://" . $url;
+            }
+            return $url;
         }
 
 	/**
@@ -122,8 +131,12 @@ class Topic extends CActiveRecord
                 $criteria->select = 't.*, COUNT(v1.id) vote_count, v2.id vote_id';
                 $criteria->group = 't.id, v2.id';
 
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('speaker_name',$this->speaker_name,true);
+		$criteria->compare('LOWER(title)',strtolower($this->title), true, 'OR', true);
+		$criteria->compare('LOWER(description)',strtolower($this->title), true, 'OR', true);
+		$criteria->compare('LOWER(language)',strtolower($this->title), true, 'OR', true);
+
+		$criteria->compare('LOWER(speaker_name)',strtolower($this->speaker_name), true, 'OR', true);
+		$criteria->compare('LOWER(speaker_description)',strtolower($this->speaker_name), true, 'OR', true);
 
                 $criteria->compare('updated_at', " > " . $updated_at, true);
 

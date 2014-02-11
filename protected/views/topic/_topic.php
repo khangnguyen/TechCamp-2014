@@ -5,7 +5,11 @@
 <p><?= $model->description ?></p>
 
 <? if ($model->duration) { ?>
-  <p><?= $model->duration ?> minutes</p>
+  <p>Duration: <?= $model->duration ?> minutes</p>
+<? } ?>
+
+<? if ($model->language) { ?>
+  <p>Language: <?= $model->language ?></p>
 <? } ?>
 
 <? if ($model->slide_url) { ?>

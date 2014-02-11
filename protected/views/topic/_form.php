@@ -34,6 +34,16 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'language'); ?>
+		<?php echo $form->dropDownList($model, 'language', array(
+                    'Vietnamese' => 'Vietnamese',
+                    'English' => 'English',
+                    'Other' => 'Other'));
+                ?>
+		<?php echo $form->error($model,'language'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'duration'); ?>
 		<?php echo $form->dropDownList($model, 'duration', array(
                     '5' => '5 minutes',

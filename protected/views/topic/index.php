@@ -9,10 +9,13 @@
 
 <base target="_parent" />
 
+* You can filter using the two little text boxes beneath the titles and sort by clicking on the title bars
+
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id'=>'topic-grid',
     'dataProvider'=>$model->search($userKey),
     'filter'=>$model,
+    'template'=>"{pager}\n{items}\n{pager}",
     'columns'=>array(
       array( 
             'name'=>'title',           
