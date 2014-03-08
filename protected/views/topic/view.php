@@ -29,8 +29,9 @@ Votes: <span class="js-vote-count"><?= $model->voteCount ?></span>
     <p>Duration: <?= $model->duration ?> minutes</p>
   <? } ?>
   <? if ($model->language) { ?>
-    <p>Langauge: <?= $model->language ?></p>
+    <p>Language: <?= $model->language ?></p>
   <? } ?>
+  <p>Category: <?= $model->category ?></p>
   <? if ($model->slide_url) { ?>
     <p>
       <a href="<?= $model->slide_url ?>" target="_blank">Slide Link</a>

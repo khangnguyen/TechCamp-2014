@@ -12,6 +12,8 @@
   <p>Language: <?= $model->language ?></p>
 <? } ?>
 
+<p>Category: <?= $model->category ?></p>
+
 <? if ($model->slide_url) { ?>
   <p>
     <a href="<?= $model->slide_url ?>" target="_blank">Link</a>

@@ -44,6 +44,26 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'category'); ?>
+		<?php echo $form->dropDownList($model, 'category', array(
+                    'Cloud Computing' => 'Cloud Computing',
+                    'Data Science' => 'Data Science',
+		    'Entrepreneurship' => 'Entrepreneurship',
+		    'Mobile Development' => 'Mobile Development',
+		    'Open Source Project' => 'Open Source Project',
+		    'Programing Skills' => 'Programing Skills',
+		    'Project Management' => 'Project Management',
+		    'Scalability/Optimization' => 'Scalability/Optimization',
+		    'Software Testing' => 'Software Testing',
+		    'System Administration' => 'System Administration',
+		    'UI/UX' => 'UI/UX',
+		    'Web Development' => 'Web Development',
+                    'Others' => 'Others'));
+                ?>
+		<?php echo $form->error($model,'category'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'duration'); ?>
 		<?php echo $form->dropDownList($model, 'duration', array(
                     '5' => '5 minutes',
@@ -69,6 +89,18 @@
 		<?php echo $form->labelEx($model,'speaker_name'); ?>
 		<?php echo $form->textField($model,'speaker_name',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'speaker_name'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'speaker_email'); ?>
+		<?php echo $form->textField($model,'speaker_email',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'speaker_email'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'speaker_phoneno'); ?>
+		<?php echo $form->textField($model,'speaker_phoneno',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'speaker_phoneno'); ?>
 	</div>
 
 	<div class="row">

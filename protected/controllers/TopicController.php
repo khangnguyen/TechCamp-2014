@@ -75,9 +75,9 @@ class TopicController extends Controller
           $model=new Topic();
           $model->unsetAttributes();
           $deviceId = $_REQUEST['device_id'];
-          $updatedAt = $_REQUEST['updated_at'];
+	  //$updatedAt = $_REQUEST['updated_at'];
 
-          $dataProvider = $model->search($deviceId, $updatedAt);
+          $dataProvider = $model->search($deviceId);
           $result = array();
 
           foreach ($dataProvider->getData() as $data) {

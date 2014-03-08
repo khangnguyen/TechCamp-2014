@@ -43,10 +43,11 @@ class Topic extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, description, speaker_name', 'required'),
+			array('title, description, speaker_name, speaker_email, speaker_phoneno', 'required'),
 			array('title, speaker_name', 'length', 'max'=>128),
+			array('speaker_email', 'email'),			
 			array('duration', 'numerical', 'integerOnly'=>true),
-			array('language, desired_time, slide_url, speaker_description, speaker_url, created_at, updated_at', 'safe'),
+			array('category, language, desired_time, slide_url, speaker_description, speaker_url, created_at, updated_at', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, title, description, slide_url, speaker_name, speaker_description, speaker_url, created_at, updated_at', 'safe', 'on'=>'search'),
@@ -91,6 +92,8 @@ class Topic extends CActiveRecord
 			'description' => 'Description',
 			'slide_url' => 'Slide Url',
 			'speaker_name' => 'Speaker Name',
+			'speaker_email' => 'Speaker Email',
+			'speaker_phoneno' => 'Speaker Phone No.',
 			'speaker_description' => 'Speaker Description',
 			'speaker_url' => 'Speaker Url',
 			'created_at' => 'Created At',
@@ -143,6 +146,7 @@ class Topic extends CActiveRecord
 		return new CActiveDataProvider('Topic', array(
 			'criteria'=>$criteria,
                         'sort'=>$sort,
+			'pagination'=>array('pageSize'=>50,),
 		));
 	}
 }
