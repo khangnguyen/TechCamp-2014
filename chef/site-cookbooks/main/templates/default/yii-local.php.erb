@@ -56,5 +56,12 @@ return array(
         'recaptcha_publickey' => '6LdkzgsAAAAAAGFJ5GdJyXf4JvFqKJe5N0-F3IRt',
         'recaptcha_privatekey' => '6LdkzgsAAAAAAD6w-JyWXLfN1260aeRNl33I-JH9',
         "google_analytics_profile" => "UA-7881029-2",
+	
+	// Amazon SNS
+	"aws_access_key" => '<%= voting[:amazon_sns][:aws_access_key] %>',
+	"aws_secret_access_key" => '<%= voting[:amazon_sns][:aws_secret_access_key] %>',
+	"aws_region" => '<%= voting[:amazon_sns][:aws_region] %>',
+	"gcm_application_arn" => '<%= voting[:amazon_sns][:gcm_application_arn] %>',
+	"topic_arn" => '<%= voting[:amazon_sns][:topic_arn] %>',
     ),
 );
