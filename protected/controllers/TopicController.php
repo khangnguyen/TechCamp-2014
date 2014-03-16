@@ -33,7 +33,7 @@ class TopicController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update', 'vote','api'),
+				'actions'=>array('index','view','create','update', 'vote','api', 'fav'),
 				'users'=>array('*'),
 			),
                         array('allow',
@@ -92,10 +92,12 @@ class TopicController extends Controller
               'created_at'=>$data->created_at,
               'updated_at'=>$data->updated_at,
               'vote_count'=>$data->vote_count,
-              'voted'=>$data->vote_id ? true : false
+              'fav_count'=>$data->favCount,
+              'voted'=>$data->vote_id ? true : false,
+	      'faved'=>$data->fav_id ? true : false
             );
           }
-
+          header('Content-type: application/json');
           print json_encode($result);
         }
 
@@ -202,6 +204,23 @@ class TopicController extends Controller
                 $result['status'] = 'Failure';
                 $result['errors'] = $vote->getErrors();
               }
+              header('Content-type: application/json');
+              print json_encode($result);
+            }
+        }
+
+        public function actionFav() {
+            if (isset($_POST['topic_id'])) {
+              $fav = new Fav;
+              $fav->id = $_POST['id'];
+              $fav->topic_id = $_POST['topic_id'];
+
+              $result = array('status'=>'Success');
+              if (!$fav->save()) {
+                $result['status'] = 'Failure';
+                $result['errors'] = $fav->getErrors();
+              }
+              header('Content-type: application/json');
               print json_encode($result);
             }
         }

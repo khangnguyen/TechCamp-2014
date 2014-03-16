@@ -17,6 +17,7 @@
 class Topic extends CActiveRecord
 {
     public $vote_id;
+    public $fav_id;
     public $vote_count;
 	/**
 	 * Returns the static model of the specified AR class.
@@ -61,6 +62,7 @@ class Topic extends CActiveRecord
             return True;
         }
 
+
 	private function addhttp($url) {
 	    if ($url != '' && !preg_match("~^(?:f|ht)tps?://~i", $url)) {
                 $url = "http://" . $url;
@@ -77,7 +79,9 @@ class Topic extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'votes' => array(self::HAS_MANY, 'Vote', 'topic_id'),
-			'voteCount' => array(self::STAT, 'Vote', 'topic_id')
+			'favs' => array(self::HAS_MANY, 'Fav', 'topic_id'),
+			'voteCount' => array(self::STAT, 'Vote', 'topic_id'),
+			'favCount' => array(self::STAT, 'Fav', 'topic_id') // This is cool, didn't know Yii has it
 		);
 	}
 
@@ -130,9 +134,9 @@ class Topic extends CActiveRecord
                     ),
                 );
 
-                $criteria->join = "LEFT JOIN votes v1 ON v1.topic_id=t.id LEFT JOIN votes v2 ON v2.topic_id = t.id AND v2.id = '" . $userId . "'";
-                $criteria->select = 't.*, COUNT(v1.id) vote_count, v2.id vote_id';
-                $criteria->group = 't.id, v2.id';
+                $criteria->join = "LEFT JOIN votes v1 ON v1.topic_id=t.id LEFT JOIN votes v2 ON v2.topic_id = t.id AND v2.id = '" . $userId . "'LEFT JOIN favs f2 ON f2.topic_id = t.id AND f2.id = '" . $userId . "'";
+                $criteria->select = 't.*, COUNT(v1.id) vote_count, v2.id vote_id, f2.id fav_id';
+                $criteria->group = 't.id, v2.id, f2.id';
 
 		$criteria->compare('LOWER(title)',strtolower($this->title), true, 'OR', true);
 		$criteria->compare('LOWER(description)',strtolower($this->title), true, 'OR', true);

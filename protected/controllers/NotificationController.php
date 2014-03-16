@@ -53,6 +53,8 @@ class NotificationController extends Controller {
                         'Message' => $model->message,
                         'Subject' => $model->subject,
                         'MessageStructure' => 'string'));
+                    // reset
+                    $model=new Notification;
                 }
             }
 	    $dataProvider = new CActiveDataProvider('Notification', array(
@@ -64,17 +66,21 @@ class NotificationController extends Controller {
         }
 
         public function actionList() {
-            $model=new Notification();
-            $model->unsetAttributes();
-            $dataProvider = $model->search();
+	    $dataProvider = new CActiveDataProvider('Notification', array(
+                'pagination'=>array(
+                    'pageSize'=>1000,
+                ),
+            ));
             $result = array();
             foreach ($dataProvider->getData() as $data) {
-                $result[$data->id] = array(
+                $result[] = array(
+                    'id' => $data->id,
                     'subject' => $data->subject,
                     'message' => $data->message,
                     'sent_at' => $data->created_at
                 );
             }
+            header('Content-type: application/json');
             print json_encode($result);
         }
 
@@ -119,7 +125,7 @@ class NotificationController extends Controller {
                     $status['status'] = 'Failure';
                     $status['error'] = 'Failed to register device';
                 }
-
+                header('Content-type: application/json');
                 print json_encode($result);
             }
         }
